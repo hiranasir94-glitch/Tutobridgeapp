@@ -91,7 +91,6 @@ class TeacherProfile {
 
   /// Onboarding counts as finished once the fields parents rely on are filled in.
   bool get isOnboardingComplete =>
-      (bio?.trim().length ?? 0) >= 20 &&
       qualifications.isNotEmpty &&
       subjects.isNotEmpty &&
       curricula.isNotEmpty &&
