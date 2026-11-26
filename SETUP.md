@@ -122,3 +122,17 @@ One palette across the app and the web: lime `#D4FF00` (pressed `#B8E600`), whit
 - Flutter: all colours live in `mobile/lib/core/theme.dart` (`AppColors` + `buildTheme()`). Change a value there and every screen follows.
 - Web: the `:root` variables at the top of the CSS in `prototype/index.html` and `prototype/website.html`.
 - Lime is a fill only (buttons, chips, badges, banners). Text and icons on lime or white are always `#111111`, and focus rings are 2px `#111111`.
+
+## Forgot password (email reset)
+
+The app and the web previews have a small "Forgot password?" link under Log in. In the Flutter app it uses Supabase's built-in recovery email.
+
+1. **Redirect URL.** Supabase dashboard > Authentication > URL Configuration > Redirect URLs: add `io.tutobridge.app://reset-password`. To use another value, build with `--dart-define=RESET_REDIRECT=<your url>` and list that URL instead.
+2. **Email template.** Authentication > Email Templates > "Reset Password". The default works; keep the `{{ .ConfirmationURL }}` link.
+3. **Deep link.** The repo has no `android/` or `ios/` folders yet, so run `flutter create .` first, then:
+   - Android: in `android/app/src/main/AndroidManifest.xml`, add to the main `<activity>`:
+     `<intent-filter><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.DEFAULT"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="io.tutobridge.app" android:host="reset-password"/></intent-filter>`
+   - iOS: in `ios/Runner/Info.plist`, add a `CFBundleURLTypes` entry with the URL scheme `io.tutobridge.app`.
+4. **Sending limits.** Supabase's default mailer is rate limited and meant for testing. Before launch, set up your own SMTP (Authentication > SMTP Settings), for example with a `no-reply@tutobridge.com` sender.
+
+Flow: Forgot password > enter email > link arrives > opening it signs the person in with a short-lived recovery session > `AuthGate` shows the "Choose a new password" screen > saved, and they are logged in. The confirmation text never says whether the address has an account.

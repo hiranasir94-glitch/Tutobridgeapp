@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -10,12 +12,38 @@ import '../models/teacher_profile.dart';
 import '../parent/parent_home_screen.dart';
 import '../tutor/tutor_dashboard_screen.dart';
 import '../tutor/tutor_onboarding_screen.dart';
+import 'reset_password_screen.dart';
 import 'welcome_screen.dart';
 
 /// Root of the app. Signed out: welcome screen. Signed in: [RoleRouter].
 /// Because it listens to the auth stream, sign-in, sign-up, sign-out and a restored session all route here.
-class AuthGate extends StatelessWidget {
+/// When the person opens a password-reset link, Supabase signs them in with a recovery session and emits
+/// [AuthChangeEvent.passwordRecovery]; the gate then shows [ResetPasswordScreen] until the new password is saved.
+class AuthGate extends StatefulWidget {
   const AuthGate({super.key});
+
+  @override
+  State<AuthGate> createState() => _AuthGateState();
+}
+
+class _AuthGateState extends State<AuthGate> {
+  bool _recovering = false;
+  StreamSubscription<AuthState>? _sub;
+
+  @override
+  void initState() {
+    super.initState();
+    _sub = supabase.auth.onAuthStateChange.listen((state) {
+      if (state.event == AuthChangeEvent.passwordRecovery && mounted) setState(() => _recovering = true);
+      if (state.event == AuthChangeEvent.signedOut && _recovering && mounted) setState(() => _recovering = false);
+    });
+  }
+
+  @override
+  void dispose() {
+    _sub?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +52,7 @@ class AuthGate extends StatelessWidget {
       builder: (context, _) {
         final session = supabase.auth.currentSession;
         if (session == null) return const WelcomeScreen();
+        if (_recovering) return ResetPasswordScreen(onDone: () => setState(() => _recovering = false));
         return RoleRouter(key: ValueKey(session.user.id));
       },
     );

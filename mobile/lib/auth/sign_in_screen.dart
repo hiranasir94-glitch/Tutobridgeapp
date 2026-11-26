@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/supabase.dart';
 import '../core/stickers.dart';
 import '../core/widgets.dart';
+import 'forgot_password_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -85,6 +86,18 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: _busy
                     ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: AppColors.ink))
                     : const Text('Log In'),
+              ),
+              const SizedBox(height: 6),
+              // Deliberately small: a quiet escape hatch rather than a second call to action.
+              TextButton(
+                style: TextButton.styleFrom(
+                  minimumSize: const Size(0, 36),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  tapTargetSize: MaterialTapTargetSize.padded,
+                  textStyle: const TextStyle(fontSize: 11.5, fontWeight: FontWeight.w700, decoration: TextDecoration.underline),
+                ),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => ForgotPasswordScreen(initialEmail: _email.text.trim()))),
+                child: const Text('Forgot password?'),
               ),
             ]),
           ),
