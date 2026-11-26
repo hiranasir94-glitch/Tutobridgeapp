@@ -408,15 +408,13 @@ class _TutorOnboardingScreenState extends State<TutorOnboardingScreen> {
         TextFormField(
           controller: _bio,
           minLines: 5,
-          maxLines: 9,
-          maxLength: 1200,
+          maxLines: null,
           textCapitalization: TextCapitalization.sentences,
           decoration: const InputDecoration(
             labelText: 'About me & teaching style',
             alignLabelWithHint: true,
             hintText: 'How you teach, what students achieve with you, and what makes your classes different.',
           ),
-          validator: (v) => (v == null || v.trim().length < 40) ? 'Write at least 40 characters so parents get to know you' : null,
         ),
       ],
     );
