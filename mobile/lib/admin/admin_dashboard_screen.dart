@@ -18,7 +18,7 @@ class AdminDashboardScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(32),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Icon(Icons.admin_panel_settings_rounded, size: 64, color: AppColors.teal),
+            Icon(Icons.admin_panel_settings_rounded, size: 64, color: AppColors.ink),
             SizedBox(height: 16),
             Text('Admin dashboard coming soon', textAlign: TextAlign.center, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
             SizedBox(height: 8),

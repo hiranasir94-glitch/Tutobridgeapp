@@ -116,7 +116,7 @@ class _AddressScreenState extends State<AddressScreen> {
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Keep it')),
           FilledButton(
-            style: FilledButton.styleFrom(minimumSize: const Size(110, 44), backgroundColor: AppColors.coral),
+            style: FilledButton.styleFrom(minimumSize: const Size(110, 44), backgroundColor: AppColors.white, foregroundColor: AppColors.ink, side: const BorderSide(color: AppColors.ink, width: 2)),
             onPressed: () => Navigator.pop(ctx, true),
             child: const Text('Remove'),
           ),
@@ -168,16 +168,16 @@ class _AddressScreenState extends State<AddressScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Address')),
       body: _loading
-          ? const Center(child: CircularProgressIndicator(color: AppColors.teal))
+          ? const Center(child: CircularProgressIndicator(color: AppColors.ink))
           : _error != null
               ? Center(child: Padding(padding: const EdgeInsets.all(24), child: Text(_error!, textAlign: TextAlign.center)))
               : ListView(padding: const EdgeInsets.all(16), children: [
                   const SectionTitle('Current address'),
                   Container(
                     padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(color: AppColors.tealLight, borderRadius: BorderRadius.circular(20), border: Border.all(color: AppColors.teal, width: 2)),
+                    decoration: BoxDecoration(color: AppColors.limeLight, borderRadius: BorderRadius.circular(20), border: Border.all(color: AppColors.ink, width: 2)),
                     child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      const Icon(Icons.home_rounded, color: AppColors.teal),
+                      const Icon(Icons.home_rounded, color: AppColors.ink),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -198,16 +198,16 @@ class _AddressScreenState extends State<AddressScreen> {
                         color: Colors.white,
                         elevation: 0,
                         margin: const EdgeInsets.only(bottom: 10),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18), side: BorderSide(color: _isCurrent(s) ? AppColors.teal : AppColors.line, width: 1.5)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18), side: BorderSide(color: _isCurrent(s) ? AppColors.ink : AppColors.line, width: 1.5)),
                         child: Padding(
                           padding: const EdgeInsets.all(14),
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                             Row(children: [
                               Pill(s.label),
                               const SizedBox(width: 8),
-                              if (_isCurrent(s)) const Pill('Current', color: AppColors.green, background: AppColors.greenLight, icon: Icons.check_rounded),
+                              if (_isCurrent(s)) const Pill('Current', color: AppColors.ink, background: AppColors.lime, icon: Icons.check_rounded),
                               const Spacer(),
-                              IconButton(tooltip: 'Remove', onPressed: () => _delete(s), icon: const Icon(Icons.delete_outline_rounded, color: AppColors.coral)),
+                              IconButton(tooltip: 'Remove', onPressed: () => _delete(s), icon: const Icon(Icons.delete_outline_rounded, color: AppColors.ink)),
                             ]),
                             Text(s.address, style: const TextStyle(fontWeight: FontWeight.w700)),
                             if ((s.locationLabel ?? '').isNotEmpty) Text('Near ${s.locationLabel!}', style: const TextStyle(color: AppColors.muted, fontSize: 12.5)),
@@ -237,7 +237,7 @@ class _AddressScreenState extends State<AddressScreen> {
                             ChoiceChip(
                               label: Text(l),
                               selected: _label == l,
-                              labelStyle: TextStyle(fontWeight: FontWeight.w700, color: _label == l ? Colors.white : AppColors.ink),
+                              labelStyle: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
                               onSelected: (_) => setState(() => _label = l),
                             ),
                         ]),
@@ -256,7 +256,6 @@ class _AddressScreenState extends State<AddressScreen> {
                         LocationField(input: _loc, label: 'Location for this address'),
                         SwitchListTile(
                           contentPadding: EdgeInsets.zero,
-                          activeColor: AppColors.teal,
                           title: const Text('Make this my current address', style: TextStyle(fontWeight: FontWeight.w700)),
                           value: _makeCurrent,
                           onChanged: (v) => setState(() => _makeCurrent = v),
@@ -265,7 +264,7 @@ class _AddressScreenState extends State<AddressScreen> {
                         FilledButton(
                           onPressed: _saving ? null : _save,
                           child: _saving
-                              ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: Colors.white))
+                              ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: AppColors.ink))
                               : const Text('Save address'),
                         ),
                       ]),

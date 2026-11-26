@@ -101,7 +101,7 @@ class _LocationFieldState extends State<LocationField> {
       OutlinedButton.icon(
         onPressed: _busy ? null : _locate,
         icon: _busy
-            ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2.5, color: AppColors.teal))
+            ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2.5, color: AppColors.ink))
             : const Icon(Icons.my_location_rounded),
         label: Text(_busy ? 'Finding you...' : 'Use Current Location'),
       ),
@@ -109,18 +109,18 @@ class _LocationFieldState extends State<LocationField> {
         Padding(
           padding: const EdgeInsets.only(top: 8),
           child: Row(children: [
-            const Icon(Icons.check_circle_rounded, size: 18, color: AppColors.green),
+            const Icon(Icons.check_circle_rounded, size: 18, color: AppColors.ink),
             const SizedBox(width: 6),
             Expanded(
               child: Text('GPS saved (${input.lat!.toStringAsFixed(4)}, ${input.lng!.toStringAsFixed(4)})',
-                  style: const TextStyle(color: AppColors.green, fontWeight: FontWeight.w700, fontSize: 12.5)),
+                  style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700, fontSize: 12.5)),
             ),
           ]),
         ),
       if (_error != null)
         Padding(
           padding: const EdgeInsets.only(top: 8),
-          child: Text(_error!, style: const TextStyle(color: Color(0xFFB42318), fontSize: 12.5, fontWeight: FontWeight.w700)),
+          child: Text(_error!, style: const TextStyle(color: AppColors.ink, fontSize: 12.5, fontWeight: FontWeight.w700)),
         ),
     ]);
   }

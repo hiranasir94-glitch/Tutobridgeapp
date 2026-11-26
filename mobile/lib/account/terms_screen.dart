@@ -46,8 +46,8 @@ class TermsScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Terms and Policies'),
           bottom: const TabBar(
-            labelColor: AppColors.teal,
-            indicatorColor: AppColors.teal,
+            labelColor: AppColors.ink,
+            indicatorColor: AppColors.ink,
             labelStyle: TextStyle(fontWeight: FontWeight.w800),
             tabs: [Tab(text: 'Terms of Service'), Tab(text: 'Privacy Policy')],
           ),

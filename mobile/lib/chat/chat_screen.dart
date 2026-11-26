@@ -58,14 +58,14 @@ class _ChatScreenState extends State<ChatScreen> {
               if (snap.hasError) {
                 return Center(child: Padding(padding: const EdgeInsets.all(24), child: Text(errorText(snap.error!), textAlign: TextAlign.center)));
               }
-              if (!snap.hasData) return const Center(child: CircularProgressIndicator(color: AppColors.teal));
+              if (!snap.hasData) return const Center(child: CircularProgressIndicator(color: AppColors.ink));
               final msgs = snap.data!;
               if (msgs.isEmpty) {
                 return Center(
                   child: Padding(
                     padding: const EdgeInsets.all(32),
                     child: Column(mainAxisSize: MainAxisSize.min, children: [
-                      const Icon(Icons.waving_hand_rounded, size: 44, color: AppColors.sun),
+                      const Icon(Icons.waving_hand_rounded, size: 44, color: AppColors.ink),
                       const SizedBox(height: 12),
                       Text('Say salam to ${widget.otherName.split(' ').first}', style: Theme.of(context).textTheme.titleMedium),
                       const SizedBox(height: 6),

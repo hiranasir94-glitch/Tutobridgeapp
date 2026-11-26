@@ -313,9 +313,9 @@ class _TutorOnboardingScreenState extends State<TutorOnboardingScreen> {
           if (_stepError != null)
             Container(
               width: double.infinity,
-              color: AppColors.coral.withOpacity(.12),
+              color: AppColors.limeLight,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text(_stepError!, style: const TextStyle(color: Color(0xFFB42318), fontWeight: FontWeight.w800)),
+              child: Text('⚠ $_stepError', style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w800)),
             ),
           SafeArea(
             top: false,
@@ -330,7 +330,7 @@ class _TutorOnboardingScreenState extends State<TutorOnboardingScreen> {
                   child: FilledButton(
                     onPressed: _saving ? null : (_step < 3 ? _next : _submit),
                     child: _saving
-                        ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: Colors.white))
+                        ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: AppColors.ink))
                         : Text(_step < 3 ? 'Next' : 'Submit Profile'),
                   ),
                 ),
@@ -357,7 +357,7 @@ class _TutorOnboardingScreenState extends State<TutorOnboardingScreen> {
                 bottom: 0,
                 child: Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(color: AppColors.sun, shape: BoxShape.circle),
+                  decoration: const BoxDecoration(color: AppColors.lime, shape: BoxShape.circle),
                   child: const Icon(Icons.camera_alt_rounded, size: 20, color: AppColors.ink),
                 ),
               ),
@@ -449,7 +449,7 @@ class _TutorOnboardingScreenState extends State<TutorOnboardingScreen> {
                   if (_degrees.length > 1)
                     IconButton(
                       tooltip: 'Remove',
-                      icon: const Icon(Icons.delete_outline_rounded, color: AppColors.coral),
+                      icon: const Icon(Icons.delete_outline_rounded, color: AppColors.ink),
                       onPressed: () => setState(() => _degrees.removeAt(i).dispose()),
                     ),
                 ]),
@@ -518,8 +518,8 @@ class _TutorOnboardingScreenState extends State<TutorOnboardingScreen> {
                 FilterChip(
                   label: Text(m.label),
                   selected: switch (m) { TeachMode.online => _online, TeachMode.homeAcademy => _atTeacher, TeachMode.privateHome => _atStudent },
-                  selectedColor: AppColors.tealLight,
-                  checkmarkColor: AppColors.teal,
+                  selectedColor: AppColors.limeLight,
+                  checkmarkColor: AppColors.ink,
                   labelStyle: const TextStyle(fontWeight: FontWeight.w700),
                   onSelected: (v) => setState(() {
                     switch (m) {
@@ -696,13 +696,16 @@ class _ProgressHeader extends StatelessWidget {
           tween: Tween(begin: 0, end: (step + 1) / titles.length),
           duration: const Duration(milliseconds: 450),
           curve: Curves.easeOutBack,
-          builder: (context, v, _) => ClipRRect(
-            borderRadius: BorderRadius.circular(99),
-            child: LinearProgressIndicator(
-              value: v.clamp(0.0, 1.0),
-              minHeight: 12,
-              color: AppColors.sun,
-              backgroundColor: AppColors.tealLight,
+          builder: (context, v, _) => Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(99), border: Border.all(color: AppColors.ink, width: 2)),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(99),
+              child: LinearProgressIndicator(
+                value: v.clamp(0.0, 1.0),
+                minHeight: 12,
+                color: AppColors.lime,
+                backgroundColor: AppColors.white,
+              ),
             ),
           ),
         ),
@@ -730,7 +733,7 @@ class _ChipSelect extends StatelessWidget {
         FilterChip(
           label: Text(o),
           selected: selected.contains(o),
-          labelStyle: TextStyle(fontWeight: FontWeight.w700, color: selected.contains(o) ? Colors.white : AppColors.ink),
+          labelStyle: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
           onSelected: (v) {
             v ? selected.add(o) : selected.remove(o);
             onChanged();
@@ -769,17 +772,17 @@ class _ModeCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: enabled ? AppColors.tealLight : Colors.white,
+        color: enabled ? AppColors.limeLight : Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: enabled ? AppColors.teal : AppColors.line, width: 2),
+        border: Border.all(color: enabled ? AppColors.ink : AppColors.line, width: 2),
       ),
       child: Column(children: [
         Row(children: [
           Container(
             width: 46,
             height: 46,
-            decoration: BoxDecoration(color: enabled ? AppColors.teal : AppColors.tealLight, borderRadius: BorderRadius.circular(14)),
-            child: Icon(icon, color: enabled ? Colors.white : AppColors.teal),
+            decoration: BoxDecoration(color: enabled ? AppColors.lime : AppColors.limeLight, borderRadius: BorderRadius.circular(14)),
+            child: Icon(icon, color: AppColors.ink),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -788,7 +791,7 @@ class _ModeCard extends StatelessWidget {
               Text(subtitle, style: const TextStyle(color: AppColors.muted, fontSize: 12.5)),
             ]),
           ),
-          Switch(value: enabled, activeColor: AppColors.teal, onChanged: onChanged),
+          Switch(value: enabled, onChanged: onChanged),
         ]),
         AnimatedSize(
           duration: const Duration(milliseconds: 250),
@@ -827,10 +830,10 @@ class _UploadTile extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: done ? AppColors.green : AppColors.line, width: 2),
+          border: Border.all(color: done ? AppColors.ink : AppColors.line, width: 2),
         ),
         child: Row(children: [
-          Icon(done ? Icons.check_circle_rounded : Icons.upload_file_rounded, color: done ? AppColors.green : AppColors.teal),
+          Icon(done ? Icons.check_circle_rounded : Icons.upload_file_rounded, color: AppColors.ink),
           const SizedBox(width: 12),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -838,7 +841,7 @@ class _UploadTile extends StatelessWidget {
               Text(fileName ?? 'JPG, PNG or PDF, up to 5 MB', style: const TextStyle(color: AppColors.muted, fontSize: 12.5)),
             ]),
           ),
-          Text(done ? 'Change' : 'Upload', style: const TextStyle(color: AppColors.teal, fontWeight: FontWeight.w800)),
+          Text(done ? 'Change' : 'Upload', style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w800)),
         ]),
       ),
     );
@@ -880,7 +883,7 @@ class _PreviewCard extends StatelessWidget {
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(name.isEmpty ? 'Your name' : name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
-              Text(qualification ?? 'Your qualification', style: const TextStyle(color: AppColors.teal, fontWeight: FontWeight.w700, fontSize: 13)),
+              Text(qualification ?? 'Your qualification', style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700, fontSize: 13)),
               Text('$years yrs experience', style: const TextStyle(color: AppColors.muted, fontSize: 12.5)),
             ]),
           ),
@@ -889,7 +892,7 @@ class _PreviewCard extends StatelessWidget {
         Wrap(spacing: 6, runSpacing: 6, children: [for (final s in subjects) Pill(s)]),
         const SizedBox(height: 6),
         Wrap(spacing: 6, runSpacing: 6, children: [
-          for (final c in curricula) Pill(c, color: Colors.white, background: AppColors.teal),
+          for (final c in curricula) Pill(c),
         ]),
         const SizedBox(height: 10),
         for (final m in modes)

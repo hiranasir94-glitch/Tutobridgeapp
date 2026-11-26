@@ -85,15 +85,15 @@ class _Placeholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [AppColors.teal, AppColors.tealDark]),
+        color: AppColors.lime,
       ),
       child: LayoutBuilder(builder: (context, c) {
         final side = math.min(c.maxWidth, c.maxHeight);
         final text = initialsOf(name);
         return Center(
           child: text.isEmpty
-              ? Icon(Icons.person_rounded, color: Colors.white70, size: side * .5)
-              : Text(text, style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: side * .36)),
+              ? Icon(Icons.person_rounded, color: AppColors.ink, size: side * .5)
+              : Text(text, style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w800, fontSize: side * .36)),
         );
       }),
     );
@@ -114,7 +114,7 @@ class TeacherAvatar extends StatelessWidget {
       width: d,
       height: d,
       padding: star ? const EdgeInsets.all(2.5) : EdgeInsets.zero,
-      decoration: star ? const BoxDecoration(shape: BoxShape.circle, color: AppColors.sun) : null,
+      decoration: star ? const BoxDecoration(shape: BoxShape.circle, color: AppColors.ink) : null,
       child: ClipOval(child: TeacherPortrait(source: source, decodeWidth: (d * 3).round())),
     );
   }
@@ -144,7 +144,7 @@ class PortraitCard extends StatelessWidget {
             TeacherPortrait(source: source),
             const DecoratedBox(
               decoration: BoxDecoration(
-                gradient: LinearGradient(begin: Alignment.center, end: Alignment.bottomCenter, colors: [Color(0x00000000), Color(0xCC052E33)]),
+                gradient: LinearGradient(begin: Alignment.center, end: Alignment.bottomCenter, colors: [Color(0x00000000), Color(0xCC111111)]),
               ),
             ),
             if (badge != null) Positioned(top: 10, left: 10, child: badge!),
@@ -225,7 +225,7 @@ class TeacherProfileHeader extends StatelessWidget {
             TeacherPortrait(source: source, decodeWidth: 1200),
             const DecoratedBox(
               decoration: BoxDecoration(
-                gradient: LinearGradient(begin: Alignment.center, end: Alignment.bottomCenter, colors: [Color(0x00000000), Color(0xDD052E33)]),
+                gradient: LinearGradient(begin: Alignment.center, end: Alignment.bottomCenter, colors: [Color(0x00000000), Color(0xDD111111)]),
               ),
             ),
             Positioned(

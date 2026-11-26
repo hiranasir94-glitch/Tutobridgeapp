@@ -93,7 +93,7 @@ class _TuitionRequestSheetState extends State<TuitionRequestSheet> {
             Container(
               margin: const EdgeInsets.only(top: 10),
               padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(color: AppColors.amberLight, borderRadius: BorderRadius.circular(12)),
+              decoration: BoxDecoration(color: AppColors.lime, borderRadius: BorderRadius.circular(12)),
               child: const Text('Save your current location in Account > Address so teachers can see your request on their map.', style: TextStyle(fontSize: 13)),
             ),
           const SizedBox(height: 14),

@@ -69,7 +69,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
                 child: ChoiceChip(
                   label: Text(f == 'All' ? 'All' : 'For $f'),
                   selected: _filter == f,
-                  labelStyle: TextStyle(fontWeight: FontWeight.w700, color: _filter == f ? Colors.white : AppColors.ink),
+                  labelStyle: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
                   onSelected: (_) => setState(() => _filter = f),
                 ),
               ),
@@ -92,7 +92,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
                   tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
                   childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 14),
                   expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                  iconColor: AppColors.teal,
+                  iconColor: AppColors.ink,
                   title: Text(f.q, style: const TextStyle(fontWeight: FontWeight.w800)),
                   children: [Text(f.a, style: const TextStyle(height: 1.4))],
                 ),

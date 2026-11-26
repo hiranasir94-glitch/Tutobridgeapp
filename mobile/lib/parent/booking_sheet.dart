@@ -113,7 +113,7 @@ class BookingSheetState extends State<BookingSheet> {
             FilledButton(
               onPressed: _busy ? null : _send,
               child: _busy
-                  ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: Colors.white))
+                  ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: AppColors.ink))
                   : const Text('Send request'),
             ),
           ]),

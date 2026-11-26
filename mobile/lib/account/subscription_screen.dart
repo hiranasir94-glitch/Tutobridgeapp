@@ -80,7 +80,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Subscription')),
       body: _loading
-          ? const Center(child: CircularProgressIndicator(color: AppColors.teal))
+          ? const Center(child: CircularProgressIndicator(color: AppColors.ink))
           : _error != null
               ? Center(child: Padding(padding: const EdgeInsets.all(24), child: Text(_error!, textAlign: TextAlign.center)))
               : ListView(padding: const EdgeInsets.all(16), children: [
@@ -119,18 +119,18 @@ class PlanCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: isCurrent ? AppColors.green : (plan.popular ? AppColors.sun : AppColors.line), width: highlight ? 2.5 : 1.5),
+        border: Border.all(color: isCurrent ? AppColors.ink : (plan.popular ? AppColors.ink : AppColors.line), width: highlight ? 2.5 : 1.5),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Text(plan.name, style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(width: 10),
-          if (isCurrent) const Pill('Your plan', color: AppColors.green, background: AppColors.greenLight, icon: Icons.check_rounded),
-          if (isRequested) const Pill('Requested', color: AppColors.amber, background: AppColors.amberLight, icon: Icons.hourglass_top_rounded),
-          if (plan.popular && !isCurrent && !isRequested) const Pill('Most popular', color: Color(0xFF422006), background: AppColors.sun, icon: Icons.star_rounded),
+          if (isCurrent) const Pill('Your plan', color: AppColors.ink, background: AppColors.lime, icon: Icons.check_rounded),
+          if (isRequested) const Pill('Requested', color: AppColors.ink, background: AppColors.lime, icon: Icons.hourglass_top_rounded),
+          if (plan.popular && !isCurrent && !isRequested) const Pill('Most popular', color: AppColors.ink, background: AppColors.lime, icon: Icons.star_rounded),
         ]),
         const SizedBox(height: 4),
-        Text(plan.priceLabel, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 22, color: AppColors.teal)),
+        Text(plan.priceLabel, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 22, color: AppColors.ink)),
         const SizedBox(height: 4),
         Text(plan.tagline, style: const TextStyle(color: AppColors.muted)),
         const SizedBox(height: 12),
@@ -138,7 +138,7 @@ class PlanCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 6),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Icon(Icons.check_circle_rounded, size: 20, color: AppColors.green),
+              const Icon(Icons.check_circle_rounded, size: 20, color: AppColors.ink),
               const SizedBox(width: 8),
               Expanded(child: Text(f)),
             ]),
@@ -150,7 +150,7 @@ class PlanCard extends StatelessWidget {
           FilledButton(
             onPressed: (busy || isRequested) ? null : onSelect,
             child: busy
-                ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: Colors.white))
+                ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: AppColors.ink))
                 : Text(isRequested ? 'Request received' : (plan.isFree ? 'Switch to Free' : 'Select ${plan.name}')),
           ),
       ]),

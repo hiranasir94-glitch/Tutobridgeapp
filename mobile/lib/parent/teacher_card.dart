@@ -30,7 +30,7 @@ class TeacherCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
-        side: BorderSide(color: t.isStar ? AppColors.sun : AppColors.line, width: t.isStar ? 2 : 1.5),
+        side: BorderSide(color: t.isStar ? AppColors.ink : AppColors.line, width: t.isStar ? 2 : 1.5),
       ),
       child: Padding(
         padding: const EdgeInsets.all(14),
@@ -46,24 +46,24 @@ class TeacherCard extends StatelessWidget {
                   if (listing.isSample) const Pill('Sample', color: AppColors.muted, background: AppColors.line),
                 ]),
                 if (t.qualifications.isNotEmpty)
-                  Text(t.qualifications.first, style: const TextStyle(color: AppColors.teal, fontWeight: FontWeight.w700, fontSize: 13)),
+                  Text(t.qualifications.first, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700, fontSize: 13)),
                 Text('${t.subjects.take(3).join(', ')} · ${t.curricula.take(3).join(', ')}',
                     style: const TextStyle(color: AppColors.muted, fontSize: 12.5)),
                 if (listing.distanceKm != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 3),
                     child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      const Icon(Icons.near_me_rounded, size: 14, color: AppColors.teal),
+                      const Icon(Icons.near_me_rounded, size: 14, color: AppColors.ink),
                       const SizedBox(width: 4),
                       Text(listing.distanceKm! < 1 ? 'Under 1 km away' : 'About ${listing.distanceKm!.toStringAsFixed(listing.distanceKm! % 1 == 0 ? 0 : 1)} km away',
-                          style: const TextStyle(color: AppColors.teal, fontWeight: FontWeight.w700, fontSize: 12.5)),
+                          style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700, fontSize: 12.5)),
                     ]),
                   ),
               ]),
             ),
             if (t.reviewsCount > 0)
               Pill('${t.ratingAvg.toStringAsFixed(1)} (${t.reviewsCount})',
-                  color: AppColors.amber, background: AppColors.amberLight, icon: Icons.star_rounded),
+                  color: AppColors.ink, background: AppColors.lime, icon: Icons.star_rounded),
           ]),
           const SizedBox(height: 10),
           Wrap(spacing: 6, runSpacing: 6, children: [
@@ -71,9 +71,9 @@ class TeacherCard extends StatelessWidget {
             for (final m in TeachMode.values)
               if (t.offers(m)) Pill(m.badge, icon: _modeIcon(m)),
             if (t.isImmediatelyAvailable)
-              const Pill('Available Now', color: AppColors.green, background: AppColors.greenLight, icon: Icons.circle),
+              const Pill('Available Now', color: AppColors.ink, background: AppColors.lime, icon: Icons.circle),
             if (t.rateAmount != null && t.rateType != null)
-              Pill('${pkr(t.rateAmount!)} per ${t.rateType!.unit}', color: AppColors.amber, background: AppColors.amberLight),
+              Pill('${pkr(t.rateAmount!)} per ${t.rateType!.unit}', color: AppColors.ink, background: AppColors.lime),
           ]),
           const SizedBox(height: 12),
           Row(children: [
@@ -88,10 +88,10 @@ class TeacherCard extends StatelessWidget {
             Expanded(
               flex: 2,
               child: FilledButton.icon(
-                style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(48), backgroundColor: AppColors.teal),
+                style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(48), backgroundColor: AppColors.lime, foregroundColor: AppColors.ink),
                 onPressed: connecting ? null : onConnect,
                 icon: connecting
-                    ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
+                    ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2.5, color: AppColors.ink))
                     : const Icon(Icons.chat_rounded),
                 label: const Text('Connect'),
               ),

@@ -4,7 +4,7 @@ import '../core/theme.dart';
 
 /// One of the five boxes in the Account drawer.
 class AccountMenuCard extends StatelessWidget {
-  const AccountMenuCard({super.key, required this.icon, required this.title, required this.subtitle, required this.onTap, this.color = AppColors.teal});
+  const AccountMenuCard({super.key, required this.icon, required this.title, required this.subtitle, required this.onTap, this.color = AppColors.ink});
   final IconData icon;
   final String title;
   final String subtitle;
@@ -26,8 +26,8 @@ class AccountMenuCard extends StatelessWidget {
             Container(
               width: 48,
               height: 48,
-              decoration: BoxDecoration(color: color.withOpacity(.14), borderRadius: BorderRadius.circular(14)),
-              child: Icon(icon, color: color),
+              decoration: BoxDecoration(color: AppColors.lime, borderRadius: BorderRadius.circular(14)),
+              child: Icon(icon, color: AppColors.ink),
             ),
             const SizedBox(width: 14),
             Expanded(

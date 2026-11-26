@@ -70,7 +70,7 @@ class _RoleRouterState extends State<RoleRouter> {
       future: _screen,
       builder: (context, snap) {
         if (snap.connectionState != ConnectionState.done) {
-          return const Scaffold(body: Center(child: CircularProgressIndicator(color: AppColors.teal)));
+          return const Scaffold(body: Center(child: CircularProgressIndicator(color: AppColors.ink)));
         }
         if (snap.hasError) {
           return Scaffold(
@@ -78,7 +78,7 @@ class _RoleRouterState extends State<RoleRouter> {
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  const Icon(Icons.cloud_off_rounded, size: 48, color: AppColors.coral),
+                  const Icon(Icons.cloud_off_rounded, size: 48, color: AppColors.ink),
                   const SizedBox(height: 12),
                   Text(errorText(snap.error!), textAlign: TextAlign.center),
                   const SizedBox(height: 20),

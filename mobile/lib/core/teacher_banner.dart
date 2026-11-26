@@ -69,13 +69,13 @@ class _TeacherBannerWidgetState extends State<TeacherBannerWidget> with SingleTi
         Text(widget.title,
             maxLines: wide ? 3 : 4,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: wide ? 26 : 17, height: 1.15)),
+            style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w800, fontSize: wide ? 26 : 17, height: 1.15)),
         const SizedBox(height: 6),
-        Text(widget.subtitle, style: const TextStyle(color: Color(0xFFD7F3F5), fontWeight: FontWeight.w600, fontSize: 13)),
+        Text(widget.subtitle, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600, fontSize: 13)),
         if (wide && widget.ctaLabel != null) ...[
           const SizedBox(height: 14),
           FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: AppColors.sun, foregroundColor: AppColors.ink, minimumSize: const Size(0, 44)),
+            style: FilledButton.styleFrom(backgroundColor: AppColors.white, foregroundColor: AppColors.ink, side: const BorderSide(color: AppColors.ink, width: 2), minimumSize: const Size(0, 44)),
             onPressed: widget.onCta,
             child: Text(widget.ctaLabel!),
           ),
@@ -83,7 +83,7 @@ class _TeacherBannerWidgetState extends State<TeacherBannerWidget> with SingleTi
         if (illustrative)
           const Padding(
             padding: EdgeInsets.only(top: 8),
-            child: Text('Illustrative portraits', style: TextStyle(color: Color(0x99FFFFFF), fontSize: 10.5)),
+            child: Text('Illustrative portraits', style: TextStyle(color: AppColors.ink, fontSize: 10.5)),
           ),
       ]);
 
@@ -91,7 +91,7 @@ class _TeacherBannerWidgetState extends State<TeacherBannerWidget> with SingleTi
         padding: EdgeInsets.symmetric(horizontal: wide ? 28 : 16, vertical: wide ? 24 : 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
-          gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [AppColors.teal, AppColors.tealDark]),
+          color: AppColors.lime,
         ),
         child: Row(children: [
           Expanded(child: text),

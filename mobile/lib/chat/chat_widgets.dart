@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../models/chat.dart';
 
-/// One message. Mine sit on the right in teal; theirs on the left in white.
+/// One message. Mine sit on the right in lime; theirs on the left in white.
 class MessageBubble extends StatelessWidget {
   const MessageBubble({super.key, required this.message, required this.mine});
   final ChatMessage message;
@@ -19,7 +19,7 @@ class MessageBubble extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 3),
         padding: const EdgeInsets.fromLTRB(14, 9, 14, 7),
         decoration: BoxDecoration(
-          color: mine ? AppColors.teal : Colors.white,
+          color: mine ? AppColors.lime : Colors.white,
           border: mine ? null : Border.all(color: AppColors.line),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(18),
@@ -31,10 +31,10 @@ class MessageBubble extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, mainAxisSize: MainAxisSize.min, children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(message.body, style: TextStyle(color: mine ? Colors.white : AppColors.ink, fontSize: 15, height: 1.3)),
+            child: Text(message.body, style: TextStyle(color: AppColors.ink, fontSize: 15, height: 1.3)),
           ),
           const SizedBox(height: 3),
-          Text(shortTime(message.createdAt), style: TextStyle(color: mine ? const Color(0xB3FFFFFF) : AppColors.muted, fontSize: 10.5)),
+          Text(shortTime(message.createdAt), style: TextStyle(color: mine ? AppColors.ink : AppColors.muted, fontSize: 10.5)),
         ]),
       ),
     );
@@ -99,11 +99,11 @@ class _MessageInputBarState extends State<MessageInputBar> {
             ),
             const SizedBox(width: 8),
             IconButton.filled(
-              style: IconButton.styleFrom(backgroundColor: AppColors.teal, foregroundColor: Colors.white, minimumSize: const Size(48, 48)),
+              style: IconButton.styleFrom(backgroundColor: AppColors.lime, foregroundColor: AppColors.ink, minimumSize: const Size(48, 48)),
               tooltip: 'Send',
               onPressed: (widget.enabled && !_sending && _c.text.trim().isNotEmpty) ? _send : null,
               icon: _sending
-                  ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
+                  ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2.5, color: AppColors.ink))
                   : const Icon(Icons.send_rounded),
             ),
           ]),

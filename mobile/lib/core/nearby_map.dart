@@ -6,9 +6,9 @@ import 'theme.dart';
 
 /// What a pin on the map stands for.
 enum MapPinKind {
-  teacher('Teacher', Icons.school_rounded, AppColors.teal),
-  centre('Tuition centre / home tutor', Icons.home_work_rounded, AppColors.coral),
-  request('Looking for a teacher', Icons.person_search_rounded, AppColors.green);
+  teacher('Teacher', Icons.school_rounded, AppColors.lime),
+  centre('Tuition centre / home tutor', Icons.home_work_rounded, AppColors.white),
+  request('Looking for a teacher', Icons.person_search_rounded, AppColors.lime);
 
   const MapPinKind(this.label, this.icon, this.color);
   final String label;
@@ -88,7 +88,7 @@ class NearbyMap extends StatelessWidget {
               height: 26,
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xFF2563EB),
+                  color: AppColors.ink,
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 3),
                   boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 6)],
@@ -106,10 +106,10 @@ class NearbyMap extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: p.kind.color,
                     shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 2.5),
+                    border: Border.all(color: AppColors.ink, width: 2.5),
                     boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))],
                   ),
-                  child: Icon(p.kind.icon, color: Colors.white, size: 21),
+                  child: Icon(p.kind.icon, color: AppColors.ink, size: 21),
                 ),
               ),
             ),
@@ -142,13 +142,13 @@ class NearbyMap extends StatelessWidget {
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
               for (final k in legend)
                 Row(mainAxisSize: MainAxisSize.min, children: [
-                  Icon(k.icon, size: 13, color: k.color),
+                  Icon(k.icon, size: 13, color: AppColors.ink),
                   const SizedBox(width: 4),
                   Text(k.label, style: const TextStyle(fontSize: 10.5, fontWeight: FontWeight.w700)),
                 ]),
               if (me != null)
                 const Row(mainAxisSize: MainAxisSize.min, children: [
-                  Icon(Icons.circle, size: 11, color: Color(0xFF2563EB)),
+                  Icon(Icons.circle, size: 11, color: AppColors.ink),
                   SizedBox(width: 4),
                   Text('You', style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w700)),
                 ]),

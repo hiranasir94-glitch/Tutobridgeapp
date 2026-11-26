@@ -14,11 +14,11 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     return Scaffold(
-      backgroundColor: AppColors.tealDark,
+      backgroundColor: AppColors.lime,
       body: Stack(children: [
-        const Positioned(right: 24, top: 60, child: Floaty(seconds: 4, child: _Blob(120, AppColors.sun))),
-        const Positioned(left: -20, top: 300, child: Floaty(seconds: 3, child: _Blob(70, AppColors.coral))),
-        const Positioned(right: 70, bottom: 250, child: Floaty(seconds: 5, child: _Blob(46, Color(0xFF7FD6DC)))),
+        const Positioned(right: 24, top: 60, child: Floaty(seconds: 4, child: _Blob(120, AppColors.limeDark))),
+        const Positioned(left: -20, top: 300, child: Floaty(seconds: 3, child: _Blob(70, AppColors.white))),
+        const Positioned(right: 70, bottom: 250, child: Floaty(seconds: 5, child: _Blob(46, AppColors.limeDark))),
         const Positioned(right: 18, top: 70, child: Floaty(seconds: 5, child: Sticker('books', size: 84, angle: 8))),
         const Positioned(right: 110, top: 130, child: Floaty(seconds: 4, child: Sticker('bulb', size: 58, angle: -8))),
         const Positioned(right: 12, top: 250, child: Floaty(seconds: 6, child: Sticker('globe', size: 72, angle: -6))),
@@ -34,18 +34,18 @@ class WelcomeScreen extends StatelessWidget {
               const Spacer(),
               const Floaty(child: LogoMark(size: 72)),
               const SizedBox(height: 20),
-              Rise(child: Text('Tutobridge', style: text.headlineMedium!.copyWith(color: Colors.white, fontSize: 44))),
+              Rise(child: Text('Tutobridge', style: text.headlineMedium!.copyWith(color: AppColors.ink, fontSize: 44))),
               const SizedBox(height: 8),
               Rise(
                 delayMs: 100,
                 child: Text('Find Trusted Tutors Near You in Lahore',
-                    style: text.titleMedium!.copyWith(color: AppColors.tealLight, fontWeight: FontWeight.w700)),
+                    style: text.titleMedium!.copyWith(color: AppColors.ink, fontWeight: FontWeight.w700)),
               ),
               const Spacer(),
               Rise(
                 delayMs: 200,
                 child: FilledButton(
-                  style: FilledButton.styleFrom(backgroundColor: Colors.white, foregroundColor: AppColors.tealDark),
+                  style: FilledButton.styleFrom(backgroundColor: AppColors.white, foregroundColor: AppColors.ink, side: const BorderSide(color: AppColors.ink, width: 2)),
                   onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SignInScreen())),
                   child: const Text('Log In'),
                 ),
@@ -54,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
               Rise(
                 delayMs: 300,
                 child: FilledButton(
-                  style: FilledButton.styleFrom(backgroundColor: AppColors.sun, foregroundColor: AppColors.ink),
+                  style: FilledButton.styleFrom(backgroundColor: AppColors.white, foregroundColor: AppColors.ink, side: const BorderSide(color: AppColors.ink, width: 2)),
                   onPressed: () => Navigator.push(
                       context, MaterialPageRoute(builder: (_) => const SignUpScreen(role: UserRole.parent))),
                   child: const Text('Sign Up as a Parent / Student'),
@@ -64,7 +64,7 @@ class WelcomeScreen extends StatelessWidget {
               Rise(
                 delayMs: 400,
                 child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(foregroundColor: Colors.white, side: const BorderSide(color: Colors.white54, width: 2)),
+                  style: OutlinedButton.styleFrom(foregroundColor: AppColors.ink, backgroundColor: Colors.transparent, side: const BorderSide(color: AppColors.ink, width: 2)),
                   onPressed: () => Navigator.push(
                       context, MaterialPageRoute(builder: (_) => const SignUpScreen(role: UserRole.teacher))),
                   child: const Text('Register as a Teacher'),

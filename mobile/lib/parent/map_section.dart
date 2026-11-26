@@ -79,17 +79,17 @@ class _ParentMapSectionState extends State<ParentMapSection> {
   void _openPin(MapPin p) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppColors.cream,
+      backgroundColor: AppColors.white,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (_) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              CircleAvatar(backgroundColor: p.kind.color, child: Icon(p.kind.icon, color: Colors.white)),
+              CircleAvatar(backgroundColor: p.kind.color, child: Icon(p.kind.icon, color: AppColors.ink)),
               const SizedBox(width: 12),
               Expanded(child: Text(p.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800))),
-              if (p.data['star'] == true) const Pill('Star Teacher', color: Color(0xFF422006), background: AppColors.sun),
+              if (p.data['star'] == true) const Pill('Star Teacher', color: AppColors.ink, background: AppColors.lime),
             ]),
             const SizedBox(height: 8),
             Text(p.kind.label, style: const TextStyle(color: AppColors.muted, fontWeight: FontWeight.w700)),
@@ -108,7 +108,7 @@ class _ParentMapSectionState extends State<ParentMapSection> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppColors.cream,
+      backgroundColor: AppColors.white,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (_) => TuitionRequestSheet(hasLocation: _me != null),
     );
@@ -125,14 +125,14 @@ class _ParentMapSectionState extends State<ParentMapSection> {
         future: _future,
         builder: (context, snap) {
           if (snap.connectionState != ConnectionState.done) {
-            return const SizedBox(height: 230, child: Center(child: CircularProgressIndicator(color: AppColors.teal)));
+            return const SizedBox(height: 230, child: Center(child: CircularProgressIndicator(color: AppColors.ink)));
           }
           if (snap.hasError) {
             return Container(
               height: 90,
               alignment: Alignment.center,
               decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
-              child: Text(errorText(snap.error!), style: const TextStyle(color: AppColors.coral)),
+              child: Text(errorText(snap.error!), style: const TextStyle(color: AppColors.ink)),
             );
           }
           return NearbyMap(

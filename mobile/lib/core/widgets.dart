@@ -66,14 +66,14 @@ class LogoMark extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      decoration: BoxDecoration(color: AppColors.tealLight, borderRadius: BorderRadius.circular(size * .28)),
-      child: Icon(Icons.school_rounded, color: AppColors.teal, size: size * .6),
+      decoration: BoxDecoration(color: AppColors.lime, borderRadius: BorderRadius.circular(size * .28), border: Border.all(color: AppColors.ink, width: 2)),
+      child: Icon(Icons.school_rounded, color: AppColors.ink, size: size * .6),
     );
   }
 }
 
 class Pill extends StatelessWidget {
-  const Pill(this.text, {super.key, this.color = AppColors.teal, this.background = AppColors.tealLight, this.icon});
+  const Pill(this.text, {super.key, this.color = AppColors.ink, this.background = AppColors.lime, this.icon});
   final String text;
   final Color color;
   final Color background;
@@ -96,7 +96,7 @@ class StarBadge extends StatelessWidget {
   const StarBadge({super.key});
   @override
   Widget build(BuildContext context) =>
-      const Pill('Star Teacher', color: Color(0xFF422006), background: AppColors.sun, icon: Icons.star_rounded);
+      const Pill('Star Teacher', color: AppColors.ink, background: AppColors.lime, icon: Icons.star_rounded);
 }
 
 /// Kept for existing call sites; now backed by [TeacherAvatar] so every avatar gets the fade-in and fallback.
@@ -126,7 +126,7 @@ Future<void> confirmSignOut(BuildContext context) async {
       actions: [
         TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Stay')),
         FilledButton(
-          style: FilledButton.styleFrom(minimumSize: const Size(110, 44), backgroundColor: AppColors.coral),
+          style: FilledButton.styleFrom(minimumSize: const Size(110, 44)),
           onPressed: () => Navigator.pop(ctx, true),
           child: const Text('Log out'),
         ),
@@ -140,8 +140,9 @@ void showSnack(BuildContext context, String message, {bool error = false}) {
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
     ..showSnackBar(SnackBar(
-      content: Text(message),
-      backgroundColor: error ? AppColors.coral : AppColors.tealDark,
+      content: Text(error ? '⚠ $message' : message, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w800)),
+      backgroundColor: error ? AppColors.white : AppColors.lime,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14), side: const BorderSide(color: AppColors.ink, width: 2)),
       behavior: SnackBarBehavior.floating,
     ));
 }

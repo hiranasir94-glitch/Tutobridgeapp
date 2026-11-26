@@ -162,7 +162,7 @@ class _SearchViewState extends State<SearchView> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppColors.cream,
+      backgroundColor: AppColors.white,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (_) => BookingSheet(listing: l, parentId: _me.id),
     );
@@ -171,7 +171,7 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      color: AppColors.teal,
+      color: AppColors.ink,
       onRefresh: () async => setState(() => _future = _load()),
       child: FutureBuilder<List<TeacherListing>>(
         future: _future,
@@ -193,7 +193,7 @@ class _SearchViewState extends State<SearchView> {
             ),
             const SizedBox(height: 4),
             Row(children: [
-              const Icon(Icons.place_rounded, size: 18, color: AppColors.teal),
+              const Icon(Icons.place_rounded, size: 18, color: AppColors.ink),
               const SizedBox(width: 4),
               Expanded(child: Text('Teachers near $where', style: const TextStyle(color: AppColors.muted, fontWeight: FontWeight.w700), overflow: TextOverflow.ellipsis)),
             ]),
@@ -261,9 +261,9 @@ class _SearchViewState extends State<SearchView> {
             const SizedBox(height: 16),
             SizedBox(key: _resultsKey, height: 0),
             if (!done)
-              const Padding(padding: EdgeInsets.all(40), child: Center(child: CircularProgressIndicator(color: AppColors.teal)))
+              const Padding(padding: EdgeInsets.all(40), child: Center(child: CircularProgressIndicator(color: AppColors.ink)))
             else if (snap.hasError)
-              Text(errorText(snap.error!), style: const TextStyle(color: AppColors.coral))
+              Text(errorText(snap.error!), style: const TextStyle(color: AppColors.ink))
             else ...[
               for (final (i, l) in shown.indexed)
                 Rise(
@@ -298,9 +298,9 @@ class _Hint extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(color: AppColors.amberLight, borderRadius: BorderRadius.circular(14)),
+      decoration: BoxDecoration(color: AppColors.lime, borderRadius: BorderRadius.circular(14)),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Icon(icon, size: 18, color: AppColors.amber),
+        Icon(icon, size: 18, color: AppColors.ink),
         const SizedBox(width: 8),
         Expanded(child: Text(text, style: const TextStyle(fontSize: 13))),
       ]),

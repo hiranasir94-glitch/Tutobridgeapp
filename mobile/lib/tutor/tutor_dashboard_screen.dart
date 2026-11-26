@@ -143,7 +143,7 @@ class _TutorDashboardScreenState extends State<TutorDashboardScreen> {
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Keep it')),
           FilledButton(
-            style: FilledButton.styleFrom(minimumSize: const Size(110, 44), backgroundColor: AppColors.coral),
+            style: FilledButton.styleFrom(minimumSize: const Size(110, 44), backgroundColor: AppColors.white, foregroundColor: AppColors.ink, side: const BorderSide(color: AppColors.ink, width: 2)),
             onPressed: () => Navigator.pop(ctx, true),
             child: const Text('Decline'),
           ),
@@ -166,7 +166,7 @@ class _TutorDashboardScreenState extends State<TutorDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_loading) return const Scaffold(body: Center(child: CircularProgressIndicator(color: AppColors.teal)));
+    if (_loading) return const Scaffold(body: Center(child: CircularProgressIndicator(color: AppColors.ink)));
     if (_error != null || _teacher == null || _profile == null) {
       return Scaffold(
         body: Center(
@@ -199,7 +199,7 @@ class _TutorDashboardScreenState extends State<TutorDashboardScreen> {
       ),
       endDrawer: AccountDrawer(profile: p, onReturn: _loadAll),
       body: RefreshIndicator(
-        color: AppColors.teal,
+        color: AppColors.ink,
         onRefresh: _loadAll,
         child: ListView(padding: const EdgeInsets.fromLTRB(16, 4, 16, 32), children: [
           Rise(child: _Header(profile: p, teacher: t)),
@@ -211,13 +211,12 @@ class _TutorDashboardScreenState extends State<TutorDashboardScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
               decoration: BoxDecoration(
-                color: t.isAccepting ? AppColors.greenLight : Colors.white,
+                color: t.isAccepting ? AppColors.lime : Colors.white,
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: t.isAccepting ? AppColors.green : AppColors.line, width: 2),
+                border: Border.all(color: AppColors.ink, width: 2),
               ),
               child: SwitchListTile(
                 contentPadding: EdgeInsets.zero,
-                activeColor: AppColors.green,
                 title: const Text('Accepting New Students', style: TextStyle(fontWeight: FontWeight.w800)),
                 subtitle: Text(t.isAccepting ? 'Parents can send you requests' : 'Hidden from the parent board for now'),
                 value: t.isAccepting,
@@ -236,14 +235,14 @@ class _TutorDashboardScreenState extends State<TutorDashboardScreen> {
               crossAxisSpacing: 10,
               childAspectRatio: 1.7,
               children: [
-                _Stat(icon: Icons.mark_email_unread_rounded, label: 'Pending Requests', value: '${count('pending')}', color: AppColors.amber),
-                _Stat(icon: Icons.school_rounded, label: 'Active Tuitions', value: '${count('accepted')}', color: AppColors.teal),
+                _Stat(icon: Icons.mark_email_unread_rounded, label: 'Pending Requests', value: '${count('pending')}', color: AppColors.ink),
+                _Stat(icon: Icons.school_rounded, label: 'Active Tuitions', value: '${count('accepted')}', color: AppColors.ink),
                 _Stat(
                     icon: Icons.star_rounded,
                     label: 'Star Rating',
                     value: t.reviewsCount == 0 ? 'New' : '${t.ratingAvg.toStringAsFixed(1)} (${t.reviewsCount})',
-                    color: const Color(0xFFB7791F)),
-                _Stat(icon: Icons.tune_rounded, label: 'Active Modes', value: '${t.activeModes} of 3', color: AppColors.coral),
+                    color: AppColors.ink),
+                _Stat(icon: Icons.tune_rounded, label: 'Active Modes', value: '${t.activeModes} of 3', color: AppColors.ink),
               ],
             ),
           ),
@@ -270,9 +269,9 @@ class _TutorDashboardScreenState extends State<TutorDashboardScreen> {
           if (shown.isEmpty)
             Container(
               padding: const EdgeInsets.all(28),
-              decoration: BoxDecoration(color: AppColors.tealLight, borderRadius: BorderRadius.circular(20)),
+              decoration: BoxDecoration(color: AppColors.limeLight, borderRadius: BorderRadius.circular(20)),
               child: Column(children: [
-                const Icon(Icons.inbox_rounded, size: 40, color: AppColors.teal),
+                const Icon(Icons.inbox_rounded, size: 40, color: AppColors.ink),
                 const SizedBox(height: 8),
                 Text(
                   _filter == 'pending'
@@ -307,16 +306,16 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final status = switch (teacher.verificationStatus) {
-      'verified' => const Pill('Verified Educator', color: AppColors.green, background: AppColors.greenLight, icon: Icons.verified_rounded),
-      'rejected' => const Pill('Verification Rejected', color: Color(0xFFB42318), background: Color(0xFFFEE4E2), icon: Icons.error_rounded),
-      _ => const Pill('Pending Verification', color: AppColors.amber, background: AppColors.amberLight, icon: Icons.hourglass_top_rounded),
+      'verified' => const Pill('Verified Educator', color: AppColors.ink, background: AppColors.lime, icon: Icons.verified_rounded),
+      'rejected' => const Pill('Verification Rejected', color: AppColors.ink, background: AppColors.limeLight, icon: Icons.error_rounded),
+      _ => const Pill('Pending Verification', color: AppColors.ink, background: AppColors.lime, icon: Icons.hourglass_top_rounded),
     };
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: teacher.isStar ? AppColors.sun : AppColors.line, width: teacher.isStar ? 2.5 : 1.5),
+        border: Border.all(color: teacher.isStar ? AppColors.ink : AppColors.line, width: teacher.isStar ? 2.5 : 1.5),
       ),
       child: Row(children: [
         Avatar(name: profile.fullName, url: profile.avatarUrl, radius: 36),
@@ -405,7 +404,7 @@ class _RequestCard extends StatelessWidget {
           Row(children: [
             Expanded(
               child: OutlinedButton(
-                style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(46), foregroundColor: AppColors.coral, side: const BorderSide(color: AppColors.coral, width: 2)),
+                style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(46), foregroundColor: AppColors.ink, side: const BorderSide(color: AppColors.ink, width: 2)),
                 onPressed: onDecline,
                 child: const Text('Decline'),
               ),
@@ -420,23 +419,23 @@ class _RequestCard extends StatelessWidget {
           const SizedBox(height: 12),
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(color: AppColors.greenLight, borderRadius: BorderRadius.circular(14)),
+            decoration: BoxDecoration(color: AppColors.lime, borderRadius: BorderRadius.circular(14)),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (phone == null || phone.isEmpty)
                 const Text('This parent did not add a phone number.')
               else
                 Row(children: [
-                  const Icon(Icons.phone_rounded, color: AppColors.green),
+                  const Icon(Icons.phone_rounded, color: AppColors.ink),
                   const SizedBox(width: 8),
                   Expanded(child: Text(phone, style: const TextStyle(fontWeight: FontWeight.w800))),
-                  IconButton(tooltip: 'Call', icon: const Icon(Icons.call_rounded, color: AppColors.green), onPressed: () => _open(context, Uri(scheme: 'tel', path: phone.replaceAll(' ', '')))),
-                  IconButton(tooltip: 'WhatsApp', icon: const Icon(Icons.chat_rounded, color: AppColors.green), onPressed: () => _open(context, Uri.parse('https://wa.me/${toInternational(phone)}'))),
+                  IconButton(tooltip: 'Call', icon: const Icon(Icons.call_rounded, color: AppColors.ink), onPressed: () => _open(context, Uri(scheme: 'tel', path: phone.replaceAll(' ', '')))),
+                  IconButton(tooltip: 'WhatsApp', icon: const Icon(Icons.chat_rounded, color: AppColors.ink), onPressed: () => _open(context, Uri.parse('https://wa.me/${toInternational(phone)}'))),
                 ]),
               if ((b.parentAddress ?? '').isNotEmpty || (b.parentLocationLabel ?? '').isNotEmpty) ...[
                 const Divider(height: 18),
                 if ((b.parentAddress ?? '').isNotEmpty)
                   Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    const Icon(Icons.home_rounded, size: 18, color: AppColors.green),
+                    const Icon(Icons.home_rounded, size: 18, color: AppColors.ink),
                     const SizedBox(width: 8),
                     Expanded(child: Text(b.parentAddress!, style: const TextStyle(fontWeight: FontWeight.w700))),
                   ]),
@@ -444,7 +443,7 @@ class _RequestCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
                     child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      const Icon(Icons.my_location_rounded, size: 18, color: AppColors.green),
+                      const Icon(Icons.my_location_rounded, size: 18, color: AppColors.ink),
                       const SizedBox(width: 8),
                       Expanded(child: Text('Currently near ${b.parentLocationLabel!}', style: const TextStyle(color: AppColors.muted))),
                     ]),
@@ -470,7 +469,7 @@ class _RequestCard extends StatelessWidget {
   Widget _line(IconData icon, String text) => Padding(
         padding: const EdgeInsets.only(bottom: 4),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Icon(icon, size: 18, color: AppColors.teal),
+          Icon(icon, size: 18, color: AppColors.ink),
           const SizedBox(width: 8),
           Expanded(child: Text(text)),
         ]),

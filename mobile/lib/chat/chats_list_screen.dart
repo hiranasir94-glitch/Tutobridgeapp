@@ -59,7 +59,7 @@ class _ChatsListScreenState extends State<ChatsListScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Chats')),
       body: RefreshIndicator(
-        color: AppColors.teal,
+        color: AppColors.ink,
         onRefresh: _load,
         child: ListView(padding: const EdgeInsets.all(16), children: [
           SegmentedButton<bool>(
@@ -73,13 +73,13 @@ class _ChatsListScreenState extends State<ChatsListScreen> {
           ),
           const SizedBox(height: 14),
           if (_error != null)
-            Text(_error!, style: const TextStyle(color: AppColors.coral))
+            Text(_error!, style: const TextStyle(color: AppColors.ink))
           else if (all == null)
-            const Padding(padding: EdgeInsets.all(40), child: Center(child: CircularProgressIndicator(color: AppColors.teal)))
+            const Padding(padding: EdgeInsets.all(40), child: Center(child: CircularProgressIndicator(color: AppColors.ink)))
           else if (shown.isEmpty)
             Container(
               padding: const EdgeInsets.all(28),
-              decoration: BoxDecoration(color: AppColors.tealLight, borderRadius: BorderRadius.circular(20)),
+              decoration: BoxDecoration(color: AppColors.limeLight, borderRadius: BorderRadius.circular(20)),
               child: Column(children: [
                 const Sticker('notebook', size: 72, angle: -6),
                 const SizedBox(height: 8),

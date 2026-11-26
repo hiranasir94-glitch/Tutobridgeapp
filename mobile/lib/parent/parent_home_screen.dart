@@ -35,7 +35,7 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         backgroundColor: Colors.white,
-        indicatorColor: AppColors.tealLight,
+        indicatorColor: AppColors.limeLight,
         onDestinationSelected: (i) {
           if (i == 1) {
             _scaffoldKey.currentState?.openEndDrawer();
@@ -44,8 +44,8 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
           }
         },
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.search_rounded), selectedIcon: Icon(Icons.search_rounded, color: AppColors.teal), label: 'Search'),
-          NavigationDestination(icon: Icon(Icons.person_outline_rounded), selectedIcon: Icon(Icons.person_rounded, color: AppColors.teal), label: 'Account'),
+          NavigationDestination(icon: Icon(Icons.search_rounded), selectedIcon: Icon(Icons.search_rounded, color: AppColors.ink), label: 'Search'),
+          NavigationDestination(icon: Icon(Icons.person_outline_rounded), selectedIcon: Icon(Icons.person_rounded, color: AppColors.ink), label: 'Account'),
         ],
       ),
     );

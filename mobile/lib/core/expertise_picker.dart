@@ -14,7 +14,7 @@ class ExpertisePicker extends StatelessWidget {
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppColors.cream,
+      backgroundColor: AppColors.white,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (_) => _ExpertiseSheet(selected: selected),
     );
@@ -72,7 +72,6 @@ class _ExpertiseSheetState extends State<_ExpertiseSheet> {
             for (final c in kExpertise)
               CheckboxListTile(
                 value: widget.selected.contains(c.slug),
-                activeColor: AppColors.teal,
                 controlAffinity: ListTileControlAffinity.leading,
                 title: Text(c.label, style: const TextStyle(fontWeight: FontWeight.w800)),
                 subtitle: c.hint == null ? null : Text(c.hint!),

@@ -28,23 +28,23 @@ class AccountDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final roleLabel = profile.role == UserRole.teacher ? 'Teacher' : 'Parent / Student';
     return Drawer(
-      backgroundColor: AppColors.cream,
+      backgroundColor: AppColors.white,
       child: SafeArea(
         child: Column(children: [
           Container(
             width: double.infinity,
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 18),
             decoration: const BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [AppColors.teal, AppColors.tealDark]),
+              color: AppColors.lime,
             ),
             child: Row(children: [
               Avatar(name: profile.fullName, url: profile.avatarUrl, radius: 30),
               const SizedBox(width: 14),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(profile.fullName, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 18)),
+                  Text(profile.fullName, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w800, fontSize: 18)),
                   const SizedBox(height: 6),
-                  Pill(roleLabel, color: AppColors.tealDark, background: Colors.white),
+                  Pill(roleLabel, color: AppColors.ink, background: AppColors.white),
                 ]),
               ),
             ]),
@@ -62,7 +62,7 @@ class AccountDrawer extends StatelessWidget {
                 icon: Icons.home_rounded,
                 title: 'Address',
                 subtitle: 'Current and saved addresses',
-                color: AppColors.coral,
+                color: AppColors.ink,
                 onTap: () => _open(context, AddressScreen(profile: profile)),
               ),
               const SizedBox(height: 12),
@@ -70,7 +70,7 @@ class AccountDrawer extends StatelessWidget {
                 icon: Icons.workspace_premium_rounded,
                 title: 'Subscription',
                 subtitle: 'Plans and pricing',
-                color: const Color(0xFFB7791F),
+                color: AppColors.ink,
                 onTap: () => _open(context, SubscriptionScreen(profile: profile)),
               ),
               const SizedBox(height: 12),
@@ -78,7 +78,7 @@ class AccountDrawer extends StatelessWidget {
                 icon: Icons.help_rounded,
                 title: 'General',
                 subtitle: 'Help Center and FAQs',
-                color: AppColors.green,
+                color: AppColors.ink,
                 onTap: () => _open(context, const HelpCenterScreen()),
               ),
               const SizedBox(height: 12),
@@ -94,7 +94,7 @@ class AccountDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
             child: OutlinedButton.icon(
-              style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(48), foregroundColor: AppColors.coral, side: const BorderSide(color: AppColors.coral, width: 2)),
+              style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(48), foregroundColor: AppColors.ink, side: const BorderSide(color: AppColors.ink, width: 2)),
               onPressed: () => confirmSignOut(context),
               icon: const Icon(Icons.logout_rounded),
               label: const Text('Log out'),

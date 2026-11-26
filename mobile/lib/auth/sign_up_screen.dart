@@ -144,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               FilledButton(
                 onPressed: _busy ? null : _submit,
                 child: _busy
-                    ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: Colors.white))
+                    ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 3, color: AppColors.ink))
                     : Text(_isTeacher ? 'Create Teacher Account' : 'Create Account'),
               ),
             ]),

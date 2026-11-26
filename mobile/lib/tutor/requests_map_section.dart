@@ -65,14 +65,14 @@ class _TutorMapSectionState extends State<TutorMapSection> {
     final km = p.data['km'] as double?;
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppColors.cream,
+      backgroundColor: AppColors.white,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (_) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              CircleAvatar(backgroundColor: p.kind.color, child: Icon(p.kind.icon, color: Colors.white)),
+              CircleAvatar(backgroundColor: p.kind.color, child: Icon(p.kind.icon, color: AppColors.ink)),
               const SizedBox(width: 12),
               Expanded(child: Text(p.title, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800))),
             ]),
@@ -102,24 +102,24 @@ class _TutorMapSectionState extends State<TutorMapSection> {
         Container(
           margin: const EdgeInsets.only(bottom: 8),
           padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(color: AppColors.amberLight, borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(color: AppColors.lime, borderRadius: BorderRadius.circular(12)),
           child: const Text('Requests on the map appear once your profile is verified.', style: TextStyle(fontSize: 13)),
         ),
       if (_me == null)
         Container(
           margin: const EdgeInsets.only(bottom: 8),
           padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(color: AppColors.amberLight, borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(color: AppColors.lime, borderRadius: BorderRadius.circular(12)),
           child: const Text('Save your current location in Account > Address to see how far each request is.', style: TextStyle(fontSize: 13)),
         ),
       FutureBuilder<List<MapPin>>(
         future: _future,
         builder: (context, snap) {
           if (snap.connectionState != ConnectionState.done) {
-            return const SizedBox(height: 230, child: Center(child: CircularProgressIndicator(color: AppColors.teal)));
+            return const SizedBox(height: 230, child: Center(child: CircularProgressIndicator(color: AppColors.ink)));
           }
           if (snap.hasError) {
-            return Text(errorText(snap.error!), style: const TextStyle(color: AppColors.coral));
+            return Text(errorText(snap.error!), style: const TextStyle(color: AppColors.ink));
           }
           final pins = snap.data ?? const <MapPin>[];
           return NearbyMap(

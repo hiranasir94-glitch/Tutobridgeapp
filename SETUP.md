@@ -114,3 +114,11 @@ Run `supabase/migrations/20261126170000_teaching_modes_expertise.sql` after the 
 GIN indexes serve the array filters; a partial index serves the home page board. A trigger keeps the older `available_at_teacher_home` / `available_at_student_home` flags in sync, so existing booking rules and the map keep working. Bookings now accept `online`.
 
 App: Search uses `.overlaps()` on both arrays (any selected mode or category matches). Quick category chips and the Featured Online Teachers carousel are on the Search home.
+
+## Theme: lime yellow + white
+
+One palette across the app and the web: lime `#D4FF00` (pressed `#B8E600`), white `#FFFFFF`, borders `#E5E5E5`, light fill `#F2F2F2`, text and icons `#111111`, secondary text `#595959`.
+
+- Flutter: all colours live in `mobile/lib/core/theme.dart` (`AppColors` + `buildTheme()`). Change a value there and every screen follows.
+- Web: the `:root` variables at the top of the CSS in `prototype/index.html` and `prototype/website.html`.
+- Lime is a fill only (buttons, chips, badges, banners). Text and icons on lime or white are always `#111111`, and focus rings are 2px `#111111`.
