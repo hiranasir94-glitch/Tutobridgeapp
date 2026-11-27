@@ -14,6 +14,8 @@ cd mobile
 flutter create .          # adds android/ ios/ folders; keeps lib/ and pubspec.yaml
 flutter pub get
 flutter run --dart-define=SUPABASE_URL=https://YOUR-PROJECT.supabase.co --dart-define=SUPABASE_ANON_KEY=YOUR-ANON-KEY
+# Live project (Mumbai): SUPABASE_URL=https://kdgyxgytcphnmsnvxdiz.supabase.co  SUPABASE_ANON_KEY=sb_publishable_5mo3bWfClhII0ymU2asdDg_Shpsc6fh
+# The publishable key is meant to ship inside the app; the row-level security rules protect the data.
 ```
 Needs Flutter 3.22 or newer. Add the usual platform permissions for `image_picker` and `file_picker` (iOS
 `NSPhotoLibraryUsageDescription`), and for `url_launcher` on Android 11+ add `tel` and `https` to `<queries>`.
