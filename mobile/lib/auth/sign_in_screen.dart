@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../core/supabase.dart';
 import '../core/stickers.dart';
+import '../core/theme.dart';
 import '../core/widgets.dart';
 import 'forgot_password_screen.dart';
 

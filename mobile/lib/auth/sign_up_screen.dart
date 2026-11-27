@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/constants.dart';
 import '../core/location_field.dart';
 import '../core/supabase.dart';
+import '../core/theme.dart';
 import '../core/widgets.dart';
 
 /// One screen for both sign-ups. The role travels in the sign-up metadata, and the database trigger
