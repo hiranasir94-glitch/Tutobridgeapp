@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/theme.dart';
 
 // TODO before launch: have a lawyer review this text and replace the contact address with a real, monitored one.
-const kSupportEmail = 'welcome@tutobridge.com';
+const kSupportEmail = 'support@tutobridge.com';
 const _updated = 'Last updated: 26 November 2026';
 
 class _Section {

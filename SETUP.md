@@ -88,7 +88,7 @@ dashboard). It uses sample data only and is not connected to Supabase.
 ## App name
 The app is called Tutobridge. After `flutter create .`, set the name shown under the app icon:
 Android `android/app/src/main/AndroidManifest.xml` (`android:label`) and iOS `ios/Runner/Info.plist` (`CFBundleDisplayName`).
-The package name in `pubspec.yaml` is `tutobridge`. The support email (welcome@tutobridge.com) in `lib/account/terms_screen.dart` is a guess at your mailbox: change it to a real one.
+The package name in `pubspec.yaml` is `tutobridge`. The support email (support@tutobridge.com) in `lib/account/terms_screen.dart` is a guess at your mailbox: change it to a real one.
 
 ## Map on both home screens (migration 20261126140000)
 Apply `supabase/migrations/20261126140000_map_and_requests.sql` after the three earlier ones, then run `flutter pub get`
