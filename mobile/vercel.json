@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "if [ ! -d .flutter ]; then git clone --depth 1 -b stable https://github.com/flutter/flutter.git .flutter; fi && .flutter/bin/flutter config --no-analytics --enable-web && .flutter/bin/flutter precache --web",
+  "buildCommand": "[ -d web ] || .flutter/bin/flutter create . --platforms=web --project-name tutobridge --org io.tutobridge; .flutter/bin/flutter pub get && .flutter/bin/flutter build web --release --dart-define=SUPABASE_URL=${SUPABASE_URL:-https://kdgyxgytcphnmsnvxdiz.supabase.co} --dart-define=SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:-sb_publishable_5mo3bWfClhII0ymU2asdDg_Shpsc6fh}",
+  "outputDirectory": "build/web",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
