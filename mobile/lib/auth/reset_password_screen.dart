@@ -68,7 +68,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           const SizedBox(height: 16),
           Text('Choose a new password', style: Theme.of(context).textTheme.headlineSmall, textAlign: TextAlign.center),
           const SizedBox(height: 8),
-          const Text('Use at least 8 characters.', textAlign: TextAlign.center, style: TextStyle(color: AppColors.muted)),
+          const Text('Use at least 6 characters.', textAlign: TextAlign.center, style: TextStyle(color: AppColors.muted)),
           const SizedBox(height: 22),
           Form(
             key: _form,
@@ -84,7 +84,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     onPressed: () => setState(() => _hide = !_hide),
                   ),
                 ),
-                validator: (v) => (v == null || v.length < 8) ? 'Use at least 8 characters' : null,
+                validator: (v) => (v == null || v.length < 6) ? 'Use at least 6 characters' : null,
               ),
               const SizedBox(height: 14),
               TextFormField(

@@ -133,13 +133,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 autofillHints: const [AutofillHints.newPassword],
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  helperText: 'At least 8 characters',
+                  helperText: 'At least 6 characters',
                   suffixIcon: IconButton(
                     icon: Icon(_hide ? Icons.visibility_rounded : Icons.visibility_off_rounded),
                     onPressed: () => setState(() => _hide = !_hide),
                   ),
                 ),
-                validator: (v) => (v == null || v.length < 8) ? 'Use at least 8 characters' : null,
+                validator: (v) => (v == null || v.length < 6) ? 'Use at least 6 characters' : null,
               ),
               const SizedBox(height: 24),
               FilledButton(
